@@ -16,7 +16,7 @@
       </v-btn>
     </v-app-bar>
 
-    <v-main>
+    <v-main class="background">
       <router-view />
     </v-main>
     <v-footer>
@@ -31,3 +31,8 @@ export default {
   name: "App",
 };
 </script>
+<style>
+.background {
+  background-color: #ffe6e8;
+}
+</style>

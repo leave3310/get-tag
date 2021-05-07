@@ -3,19 +3,28 @@
     <h2 class="mx-auto mb-2">組員</h2>
     <v-row>
       <v-col v-for="item in groupMember" :key="item.name" cols="12" md="6">
-        <v-card max-width="700px" min-height="325px" class="mx-auto">
+        <v-card
+          max-width="700px"
+          class="mx-auto"
+          color="error"
+          transition="slide-y-transition"
+        >
           <div
             class="d-flex justify-md-space-between justify-center align-center flex-column flex-md-row"
           >
             <div>
-              <v-card-title width="200px" class="card-title-width mx-auto">{{
+              <v-card-title class="card-title-width mx-auto text-color">{{
                 item.name
               }}</v-card-title>
-              <v-card-text class="mx-auto card-text-width">{{
-                item.description
-              }}</v-card-text>
+              <v-card-subtitle class="text-color mx-auto card-text-width">{{
+                item.subtitle
+              }}</v-card-subtitle>
+              <v-card-text
+                class="mx-auto card-text-width text-color "
+                v-html="item.description"
+              ></v-card-text>
             </div>
-            <v-avatar tile size="300" class="ma-3">
+            <v-avatar tile size="250" class="ma-3">
               <v-img :src="item.image"></v-img>
             </v-avatar>
           </div>
@@ -46,6 +55,18 @@ export default {
           description: "沒什麼貢獻的躺分廢物",
           image: "../../img/members/member2.jpg",
         },
+        {
+          name: "王子軒",
+          description: "f!4g{keyboard-based_d3v310p3r0_4nd_C7Fer}",
+          image: "../../img/members/member3.gif",
+        },
+        {
+          name: "王基德",
+          subtitle: "孤高の宿命",
+          description:
+            "我叫耀德，是個學生<br> 閎 你好厲害 又考到機車駕照了  這顯然是監理站的疏失",
+          image: "../../img/members/member4.png",
+        },
       ],
     };
   },
@@ -61,7 +82,10 @@ h2 {
 .card-title-width {
   width: 100px;
 }
-.card-text-width {
-  width: 275px;
+.card-text-width{
+  width: 250px;
+}
+.text-color {
+  color: #ffe6e8;
 }
 </style>
