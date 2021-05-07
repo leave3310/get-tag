@@ -1,32 +1,33 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <div class="d-flex align-center">
+        <h2 class="secondary--text">網頁標籤擷取</h2>
+      </div>
+
+      <v-spacer></v-spacer>
+      <v-btn to="/" text class="secondary--text mr-2">
+        <h3 class="mr-2">查詢頁面</h3>
+        <v-icon>mdi-account-group</v-icon>
+      </v-btn>
+      <v-btn to="/about" text class="secondary--text">
+        <h3 class="mr-2">組員介紹</h3>
+        <v-icon>mdi-account-group</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <router-view />
+    </v-main>
+    <v-footer>
+      <v-spacer />
+      <div>&copy;2021</div>
+    </v-footer>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<script>
+export default {
+  name: "App",
+};
+</script>
