@@ -23,11 +23,14 @@
         </v-form>
       </v-col>
     </v-row>
+    <Chart />
   </v-container>
 </template>
 
 <script>
+import Chart from '../components/Chart.vue';
 export default {
+  components: { Chart },
   data() {
     return {
       url: "",

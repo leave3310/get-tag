@@ -11,9 +11,9 @@
   "dependencies": {
     "c3": "^0.7.20",
     "core-js": "^3.6.5",
-    "d3": "^6.7.0",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
+    "vue-c3": "^1.2.11",
     "vue-router": "^3.2.0",
     "vuetify": "^2.4.0"
   },

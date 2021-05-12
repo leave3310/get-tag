@@ -68,6 +68,12 @@ export default {
           image: "../../img/members/member4.png",
           poposition: "center",
         },
+        {
+          name: "劉承僕",
+          description: "：Segmentation fault",
+          image: "../../img/members/member5.jpg",
+          poposition: "left top",
+        },
       ],
     };
   },
