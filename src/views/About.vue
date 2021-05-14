@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1 class="mx-auto mb-2 text-center title-color">組員</h1>
+    <h2 class="mx-auto mt-3 mb-5 text-center title-color text-h2">組員</h2>
     <v-row>
       <v-col v-for="item in groupMember" :key="item.name" cols="12" md="6">
         <v-card class="mx-auto" color="error" transition="slide-y-transition">
@@ -83,9 +83,6 @@ export default {
 };
 </script>
 <style scoped>
-h2 {
-  width: 50px;
-}
 .card-title-width {
   width: 100px;
 }
