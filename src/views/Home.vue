@@ -8,23 +8,25 @@
     ></v-img>
     <v-row class="d-flex justify-center">
       <v-col cols="12" md="5">
-        <v-form lazy-validation>
+        <v-form ref="form" lazy-validation @submit.prevent>
           <v-text-field
             v-model.trim="url"
             label="input url/uri"
             solo
             rounded
             required
-            :rules="[empty]"
-            @submit="check"
+            :rules="[rules.empty, rules.removeRules]"
             append-icon="mdi-send"
-            @click:append="check"
+            @click:append="sendCrawl"
           ></v-text-field>
         </v-form>
       </v-col>
     </v-row>
-    <h2 class="text-center accent--text text-h3">查詢結果</h2>
-    <Chart :stringTag="totalTag" />
+    <template v-if="returnResult === -1">{{ errorMessage }}</template>
+    <template v-else-if="returnResult === 1">
+      <h2 class="text-center accent--text text-h3">查詢結果</h2>
+      <Chart :stringTag="totalTag" />
+    </template>
   </v-container>
 </template>
 
@@ -35,30 +37,46 @@ export default {
   data() {
     return {
       url: "",
-      totalTag: `<div class="header">
-        <h1>完成率排序功能</h1>
-        <div id="chart"></div>
-    </div>
-
-    <div class="content">
-        <select class="choose">
-            <option value="id">依照 id 編號排序(由1開始從上往下)</option>
-            <option value="process">依照完課率排序(由最高到最低)</option>
-        </select>
-        <ul class="list"></ul>
-        <div id="chartBar"></div>
-        
-    </div>`,
+      totalTag: ``,
+      returnResult: 0,
+      errorMessage: "",
     };
   },
   computed: {
-    empty() {
-      return this.url.length <= 0 ? "required input something" : "";
+    rules() {
+      return {
+        empty: (value) => !!value || "input is required",
+        removeRules(value) {
+          const regs = new RegExp(/[://]/);
+          return regs.test(value) && "please remove agreement";
+        },
+      };
     },
   },
   methods: {
-    check() {
-      console.log("hello");
+    async sendCrawl() {
+      const response = await this.axios.post(
+        "http://140.125.207.197:3000/crawler/",
+        {
+          URL: this.url,
+        }
+      );
+      if (response.data === 1 || response.data === 0) {
+        this.sendContent(this.url);
+        
+      }
+    },
+    responseMess() {
+      if (this.returnResult === -1) {
+        console.log(this.returnResult);
+      }
+    },
+    async sendContent(url) {
+      const response = await this.axios.get(
+        `http://140.125.207.197:3000/crawler/${url}`
+      );
+      this.returnResult = 1;
+      this.totalTag = `${response.data}`;
     },
   },
 };
